@@ -35,7 +35,6 @@ public class NotePlayer : MonoBehaviour {
 
 			n.obj = GameObject.Instantiate(noteSlotTemplate);
 			PositionSlot(i, n.obj);
-			n.source = n.obj.GetComponent<AudioSource>();
 			n.spriteRenderer = n.obj.GetComponent<SpriteRenderer>();
 
 			noteSlots.Add(n);
@@ -70,8 +69,8 @@ public class NotePlayer : MonoBehaviour {
 			return;
 		}
 		if (currentAngle > angle) {
-			if (n.source.clip != null)
-				source.PlayOneShot(n.source.clip);
+			if (n.clip != null)
+				source.PlayOneShot(n.clip);
 			lastPlayed = index;
 		}
 	}
@@ -83,7 +82,7 @@ public class NotePlayer : MonoBehaviour {
 			KeyCode kc = first + i;
 			if (Input.GetKeyDown(kc)) {
 				n.spriteRenderer.sprite = notes[i].sprite;
-				n.source.clip = notes[i].clip;
+				n.clip = notes[i].clip;
 			}
 		}
 
@@ -125,7 +124,7 @@ public class NoteTemplate {
 
 [Serializable]
 public class Note {
-	public AudioSource source;
+	public AudioClip clip;
 	public GameObject obj;
 	public SpriteRenderer spriteRenderer;
 }
