@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7144ebb56fa4046b3f4ce73c42b471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 100
+  bpm: 240
   noteCount: 16
   graceZoneInNotes: 0.5
   notes:
