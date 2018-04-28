@@ -15,11 +15,12 @@ public class NoteGenerator : MonoBehaviour {
 			clip = allNotes[key],
 			sprite = sprites[0]
 		});
+
 		for (int i = 0; i < count - 1; i++) {
 			int step = steps[i];
 			current += step;
 			selected.Add(new NoteTemplate {
-				clip = allNotes[i],
+				clip = allNotes[current],
 				sprite = sprites[i + 1]
 			});
 		};
