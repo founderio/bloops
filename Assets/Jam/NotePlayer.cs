@@ -152,26 +152,10 @@ public class NotePlayer : MonoBehaviour {
 	}
 
 	void SpawnCircle() {
-		/*GameObject effect = Instantiate(circleEffectPrefab);
+		GameObject effect = Instantiate(circleEffectPrefab);
 		effect.transform.parent = effectsContaner.transform;
-		effect.transform.localPosition = Vector3.zero;
+		effect.transform.position = transform.position;
 
-		ReorderSprites();*/
-	}
-
-	void ReorderSprites() {
-		Transform[] child = this.GetComponentsInChildren<Transform>();
-		int order = child.Length + 5;
-		foreach (Transform trans in child) {
-			if (trans != trans.root) //bcos root object just contains collider and control scripts
-			{
-				CircleEffect rnd = trans.GetComponent<CircleEffect>();
-				if (rnd != null) {
-					rnd.Sort(order);
-					order += 2;
-				}
-			}
-		}
 	}
 
 	private void CheckNoteInput() {

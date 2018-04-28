@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playNoteOnInput: 1
-  bpm: 240
-  noteCount: 16
+  bpm: 120
+  noteCount: 32
   playableNoteCount: 6
   key: 10
   graceZoneInNotes: 0.5
