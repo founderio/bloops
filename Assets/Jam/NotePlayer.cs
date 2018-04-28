@@ -140,7 +140,9 @@ public class NotePlayer : MonoBehaviour {
 	float NoteAngle(int index) {
 		float single = 360f / noteCount;
 		float angle = single * index;
-		return angle;
+		// Rotate one note, as the current one is what we are working with
+		// it has to move into position, not out of it
+		return angle + single;
 	}
 
 	void PositionSlot(int index, GameObject go) {
