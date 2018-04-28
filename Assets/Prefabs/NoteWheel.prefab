@@ -250,11 +250,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7144ebb56fa4046b3f4ce73c42b471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playNoteOnInput: 1
   bpm: 240
   noteCount: 16
   playableNoteCount: 6
-  key: 9
+  key: 10
   graceZoneInNotes: 0.5
+  delayInSeconds: 1.5
   instrumentPlayerOne: {fileID: 114711822966926078}
   instrumentPlayerTwo: {fileID: 114711822966926078}
   playerOne: 00001
@@ -269,7 +271,8 @@ MonoBehaviour:
   notesPlayerTwo: []
   effectsContaner: {fileID: 0}
   tick: 0
-  lastPlayed: 0
+  lastPlayedOne: 0
+  lastPlayedTwo: 0
   noteIndex: 0
   timePerNote: 0
   slotsPlayerOne: []
@@ -313,12 +316,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: df0e9a357a2fd4302b4bd22176d37f79, type: 3}
   steps: 0300000002000000020000000300000002000000
   sprites:
-  - {fileID: 21300000, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - {fileID: 21300004, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - {fileID: 21300006, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - {fileID: 21300008, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - {fileID: 21300010, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - {fileID: 21300012, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300000, guid: 713b432070087462fbeea83be492e22f, type: 3}
+  - {fileID: 21300000, guid: a066f12041d7f4214841848fd5f7faa4, type: 3}
+  - {fileID: 21300000, guid: 556dfdced26334c2a837cddcedbcb237, type: 3}
+  - {fileID: 21300000, guid: cc61497ff7d9a4becbf7aa3c5ecd9e14, type: 3}
+  - {fileID: 21300000, guid: 093b7c20036094e2c916c010cd616e81, type: 3}
+  - {fileID: 21300000, guid: 86b1be2454831460b81b3e6460e2fa23, type: 3}
 --- !u!212 &212060007240260902
 SpriteRenderer:
   m_ObjectHideFlags: 1
