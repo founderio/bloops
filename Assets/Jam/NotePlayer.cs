@@ -8,6 +8,8 @@ public class NotePlayer : MonoBehaviour {
 	/*
 		Config
 	 */
+	//public bool rememberNoteInputOffset = true;
+	public bool playNoteOnInput = true;
 	public float bpm = 100;
 	public int noteCount = 16;
 	public int playableNoteCount = 6;
@@ -33,7 +35,8 @@ public class NotePlayer : MonoBehaviour {
 	public GameObject effectsContaner;
 	public float tick;
 
-	public int lastPlayed = 0;
+	public int lastPlayedOne = 0;
+	public int lastPlayedTwo = 0;
 	public int noteIndex;
 
 	public float timePerNote;
@@ -92,7 +95,7 @@ public class NotePlayer : MonoBehaviour {
 	/// </summary>
 	void Update() {
 		// Delay until start
-		if(delayInSeconds >= 0) {
+		if (delayInSeconds >= 0) {
 			delayInSeconds -= Time.deltaTime;
 			return;
 		}
@@ -101,7 +104,7 @@ public class NotePlayer : MonoBehaviour {
 		tick += Time.deltaTime;
 		if (tick >= timePerNote) {
 			tick -= timePerNote;
-			NotePlay();
+			NotePlay(true, true);
 			noteIndex++;
 			if (noteIndex >= noteCount) {
 				noteIndex = 0;
@@ -120,26 +123,32 @@ public class NotePlayer : MonoBehaviour {
 		}
 	}
 
-	private void NotePlay() {
-		if (lastPlayed == noteIndex) {
-			return;
-		}
-
+	private void NotePlay(bool one, bool two) {
 		Note notePlayerOne = slotsPlayerOne[noteIndex];
 		Note notePlayerTwo = slotsPlayerTwo[noteIndex];
 
 		bool spawnEffect = false;
-		if (notePlayerOne.clip != null) {
-			source.PlayOneShot(notePlayerOne.clip);
-			spawnEffect = true;
+		if (one && lastPlayedOne != noteIndex) {
+
+			if (notePlayerOne.clip != null) {
+				source.PlayOneShot(notePlayerOne.clip);
+				spawnEffect = true;
+			}
+			lastPlayedOne = noteIndex;
 		}
-		if (notePlayerTwo.clip != null) {
-			source.PlayOneShot(notePlayerTwo.clip);
-			spawnEffect = true;
+
+		if (two && lastPlayedTwo != noteIndex) {
+
+			if (notePlayerTwo.clip != null) {
+				source.PlayOneShot(notePlayerTwo.clip);
+				spawnEffect = true;
+			}
+			lastPlayedTwo = noteIndex;
 		}
 		if (spawnEffect)
 			SpawnCircle();
-		lastPlayed = noteIndex;
+
+
 	}
 
 	void SpawnCircle() {
@@ -183,12 +192,20 @@ public class NotePlayer : MonoBehaviour {
 				notePlayerOne.clip = notesPlayerOne[i].clip;
 
 				Debug.Log(codeOne);
+
+				if (playNoteOnInput) {
+					NotePlay(true, false);
+				}
 			}
 			if (notePlayerTwo.enabled && Input.GetButtonDown(codeTwo)) {
 				notePlayerTwo.spriteRenderer.sprite = notesPlayerTwo[i].sprite;
 				notePlayerTwo.clip = notesPlayerTwo[i].clip;
 
 				Debug.Log(codeTwo);
+
+				if (playNoteOnInput) {
+					NotePlay(false, true);
+				}
 			}
 		}
 	}
