@@ -53,6 +53,22 @@ GameObject:
   - component: {fileID: 4489251344357560}
   - component: {fileID: 114711822966926078}
   m_Layer: 0
+  m_Name: InstrumentBass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1838372726730122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4361061756348506}
+  - component: {fileID: 114632335684081872}
+  m_Layer: 0
   m_Name: InstrumentGuitar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,10 +116,11 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4489251344357560}
+  - {fileID: 4361061756348506}
   - {fileID: 4060711902523384}
   - {fileID: 4903598535278514}
   - {fileID: 4796174450768604}
+  - {fileID: 4489251344357560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,6 +137,19 @@ Transform:
   m_Father: {fileID: 4039547266244254}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4361061756348506
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838372726730122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2808477, y: 1.612779, z: 0.13654286}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4039547266244254}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4489251344357560
 Transform:
   m_ObjectHideFlags: 1
@@ -131,7 +161,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4039547266244254}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4796174450768604
 Transform:
@@ -257,10 +287,10 @@ MonoBehaviour:
   key: 10
   graceZoneInNotes: 0.5
   delayInSeconds: 1.5
-  instrumentPlayerOne: {fileID: 114711822966926078}
+  instrumentPlayerOne: {fileID: 114632335684081872}
   instrumentPlayerTwo: {fileID: 114711822966926078}
-  playerOne: 00001
-  playerTwo: 01010
+  playerOne: 00001000011000
+  playerTwo: 00011000001100
   noteSlotPrefab: {fileID: 1503505773458504, guid: 2a647f3c9fe13464c829a1f15c64ee8b,
     type: 2}
   circleEffectPrefab: {fileID: 1049031137530534, guid: 3963a636dc6c241c5947750d8860d058,
@@ -277,12 +307,12 @@ MonoBehaviour:
   timePerNote: 0
   slotsPlayerOne: []
   slotsPlayerTwo: []
---- !u!114 &114711822966926078
+--- !u!114 &114632335684081872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668071600675608}
+  m_GameObject: {fileID: 1838372726730122}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6fe942af15e4c6096da67d2ae54b99, type: 3}
@@ -314,6 +344,51 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0dd637277f18c4d37a7c9921948bc597, type: 3}
   - {fileID: 8300000, guid: 42c072a6e5e4549b9b5ea90ecc673f92, type: 3}
   - {fileID: 8300000, guid: df0e9a357a2fd4302b4bd22176d37f79, type: 3}
+  steps: 0300000002000000020000000300000002000000
+  sprites:
+  - {fileID: 21300000, guid: 713b432070087462fbeea83be492e22f, type: 3}
+  - {fileID: 21300000, guid: a066f12041d7f4214841848fd5f7faa4, type: 3}
+  - {fileID: 21300000, guid: 556dfdced26334c2a837cddcedbcb237, type: 3}
+  - {fileID: 21300000, guid: cc61497ff7d9a4becbf7aa3c5ecd9e14, type: 3}
+  - {fileID: 21300000, guid: 093b7c20036094e2c916c010cd616e81, type: 3}
+  - {fileID: 21300000, guid: 86b1be2454831460b81b3e6460e2fa23, type: 3}
+--- !u!114 &114711822966926078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668071600675608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6fe942af15e4c6096da67d2ae54b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allNotes:
+  - {fileID: 8300000, guid: 4a01b49de23b646159cc4bc27f3651f5, type: 3}
+  - {fileID: 8300000, guid: a5c3f8e5ed1484ce5a157fb4416390be, type: 3}
+  - {fileID: 8300000, guid: 2025c45ae9cc241519fa5e0cef43e98e, type: 3}
+  - {fileID: 8300000, guid: 591b0da4a09474813a4ca6381ec1121b, type: 3}
+  - {fileID: 8300000, guid: 20d79555ce5e141f0bbc85c1c23e1d65, type: 3}
+  - {fileID: 8300000, guid: db9cb5b39591944f2b98664128cda2b6, type: 3}
+  - {fileID: 8300000, guid: 8e6d0239caf544519a015f1314504c16, type: 3}
+  - {fileID: 8300000, guid: 8ae88d66a30a2457c960b2697f895494, type: 3}
+  - {fileID: 8300000, guid: 9b22ef8b2059d4da59407de8e5b0b469, type: 3}
+  - {fileID: 8300000, guid: e2232b273ae594ee787d0bb4d3096fb8, type: 3}
+  - {fileID: 8300000, guid: 9b4d85820ee444a73a244828fddd631f, type: 3}
+  - {fileID: 8300000, guid: a5d97438e900e41689d624c032fff768, type: 3}
+  - {fileID: 8300000, guid: 23091a4a648d64b8b8b3d900c158c9f7, type: 3}
+  - {fileID: 8300000, guid: 6a8282da9b7964b768d184c9f806fbd5, type: 3}
+  - {fileID: 8300000, guid: c701f29e957c3466db565056512edbe4, type: 3}
+  - {fileID: 8300000, guid: 9d1f4fc3293ac4f4e870b44ca1ce7a81, type: 3}
+  - {fileID: 8300000, guid: 74bc08d4ad104401082dd8bbb1350a4c, type: 3}
+  - {fileID: 8300000, guid: 4ff2e88cead3f46159e08b54b22a7ea4, type: 3}
+  - {fileID: 8300000, guid: 9765e079eaea34e79b0f2fa031735fdc, type: 3}
+  - {fileID: 8300000, guid: 9cafe948f32264aabaeebde5af24b729, type: 3}
+  - {fileID: 8300000, guid: 91b62511d013e44bc82195eef70541ac, type: 3}
+  - {fileID: 8300000, guid: 108cdcca4cdd64392a28e67c107c2bc1, type: 3}
+  - {fileID: 8300000, guid: e390e2a22fe134f3cac0287cf5e27e35, type: 3}
+  - {fileID: 8300000, guid: 4f167f79f0e004b9291baafddc383c0b, type: 3}
+  - {fileID: 8300000, guid: 7e87abaf7e2a5489f85f66d5e9cf0fc8, type: 3}
   steps: 0300000002000000020000000300000002000000
   sprites:
   - {fileID: 21300000, guid: 713b432070087462fbeea83be492e22f, type: 3}
