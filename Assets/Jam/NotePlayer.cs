@@ -5,35 +5,52 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class NotePlayer : MonoBehaviour {
 
-	public float speed = 45;
+	/*
+		Config
+	 */
+	public float bpm = 100;
 	public int noteCount = 16;
-	public float graceZone = 360f / 32;
-
-	public float currentAngle = 0;
-
-	public int lastPlayed = 0;
-
+	public float graceZoneInNotes = 0.5f;
 	public NoteTemplate[] notes = new NoteTemplate[6];
-
-	public List<Note> noteSlots;
-
-	public GameObject noteSlotTemplate;
+	public GameObject noteSlotPrefab;
+	public GameObject circleEffectPrefab;
 	public GameObject slotMarker;
 
+	/*
+		Runtime
+	 */
+	public GameObject effectsContaner;
+	public float tick;
+
+	public int lastPlayed = 0;
+	public int noteIndex;
+
+	public float timePerNote;
+	public List<Note> noteSlots;
+
 	private AudioSource source;
+
 
 	/// <summary>
 	/// Start is called on the frame when a script is enabled just before
 	/// any of the Update methods is called the first time.
 	/// </summary>
 	void Start() {
+
+		if (effectsContaner == null) {
+			effectsContaner = new GameObject("Effects Container");
+			effectsContaner.transform.parent = transform;
+		}
+
 		source = GetComponent<AudioSource>();
+
+		timePerNote = 60f / bpm;
 
 		noteSlots = new List<Note>();
 		for (int i = 0; i < noteCount; i++) {
 			Note n = new Note();
 
-			n.obj = GameObject.Instantiate(noteSlotTemplate);
+			n.obj = GameObject.Instantiate(noteSlotPrefab);
 			PositionSlot(i, n.obj);
 			n.spriteRenderer = n.obj.GetComponent<SpriteRenderer>();
 
@@ -45,37 +62,70 @@ public class NotePlayer : MonoBehaviour {
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
 	void Update() {
-		currentAngle += Time.deltaTime * speed;
-		if (currentAngle >= 360) {
-			currentAngle -= 360;
-			lastPlayed = 0;
+		tick += Time.deltaTime;
+		if (tick >= timePerNote) {
+			tick -= timePerNote;
+			NotePlay();
+			noteIndex++;
+			if (noteIndex >= noteCount) {
+				noteIndex = 0;
+			}
 		}
+		float singleAngle = 360f / noteCount;
+
+		float currentAngle = noteIndex * singleAngle + (tick / timePerNote) * singleAngle;
 
 		gameObject.transform.rotation = Quaternion.AngleAxis(-currentAngle, Camera.main.transform.forward);
 
-		int index = 0;
-		Note n = GetCurrentNote(out index);
-		float angle = NoteAngle(index);
+		Note n = noteSlots[noteIndex];
 
-		if (n != null) {
-			CheckNoteInput(index, angle, n);
+		CheckNoteInput(n);
 
-			CheckNotePlay(index, angle, n);
+		if (Input.GetKeyDown(KeyCode.C)) {
+			SpawnCircle();
 		}
 	}
 
-	private void CheckNotePlay(int index, float angle, Note n) {
-		if (lastPlayed == index) {
+	private void NotePlay() {
+		if (lastPlayed == noteIndex) {
 			return;
 		}
-		if (currentAngle > angle) {
-			if (n.clip != null)
-				source.PlayOneShot(n.clip);
-			lastPlayed = index;
+		Note n = noteSlots[noteIndex];
+		if (n.clip != null) {
+			source.PlayOneShot(n.clip);
+			SpawnCircle();
+		}
+		lastPlayed = noteIndex;
+	}
+
+	void SpawnCircle() {
+		/*GameObject effect = Instantiate(circleEffectPrefab);
+		effect.transform.parent = effectsContaner.transform;
+		effect.transform.localPosition = Vector3.zero;
+
+		ReorderSprites();*/
+	}
+
+	void ReorderSprites() {
+		Transform[] child = this.GetComponentsInChildren<Transform>();
+		int order = child.Length + 5;
+		foreach (Transform trans in child) {
+			if (trans != trans.root) //bcos root object just contains collider and control scripts
+			{
+				CircleEffect rnd = trans.GetComponent<CircleEffect>();
+				if (rnd != null) {
+					rnd.Sort(order);
+					order += 2;
+				}
+			}
 		}
 	}
 
-	private void CheckNoteInput(int index, float angle, Note n) {
+	private void CheckNoteInput(Note n) {
+		float graceTime = (1 - graceZoneInNotes) * timePerNote;
+		if (tick < graceTime) {
+			return;
+		}
 		KeyCode first = KeyCode.Alpha0;
 
 		for (int i = 0; i < notes.Length; i++) {
@@ -85,20 +135,6 @@ public class NotePlayer : MonoBehaviour {
 				n.clip = notes[i].clip;
 			}
 		}
-
-	}
-
-	Note GetCurrentNote(out int index) {
-		for (int i = 0; i < noteCount; i++) {
-			float angle = NoteAngle(i);
-			if (currentAngle - graceZone < angle &&
-			currentAngle + graceZone > angle) {
-				index = i;
-				return noteSlots[i];
-			}
-		}
-		index = -1;
-		return null;
 	}
 
 	float NoteAngle(int index) {

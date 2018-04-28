@@ -161,11 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7144ebb56fa4046b3f4ce73c42b471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 45
+  bpm: 100
   noteCount: 16
-  graceZone: 11.25
-  currentAngle: 0
-  lastPlayed: 0
+  graceZoneInNotes: 0.5
   notes:
   - clip: {fileID: 8300000, guid: 8710de1d43bdf42c4976835bac1e7379, type: 3}
     sprite: {fileID: 21300000, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
@@ -179,7 +177,14 @@ MonoBehaviour:
     sprite: {fileID: 21300010, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
   - clip: {fileID: 8300000, guid: bb1b4c97f258a490d9616b9c9521d275, type: 3}
     sprite: {fileID: 21300012, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  noteSlots: []
-  noteSlotTemplate: {fileID: 1503505773458504, guid: 2a647f3c9fe13464c829a1f15c64ee8b,
+  noteSlotPrefab: {fileID: 1503505773458504, guid: 2a647f3c9fe13464c829a1f15c64ee8b,
+    type: 2}
+  circleEffectPrefab: {fileID: 1049031137530534, guid: 3963a636dc6c241c5947750d8860d058,
     type: 2}
   slotMarker: {fileID: 1986115960725368}
+  effectsContaner: {fileID: 0}
+  tick: 0
+  lastPlayed: 0
+  noteIndex: 0
+  timePerNote: 0
+  noteSlots: []
