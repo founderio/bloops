@@ -200,7 +200,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.686
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -289,8 +289,8 @@ MonoBehaviour:
   delayInSeconds: 1.5
   instrumentPlayerOne: {fileID: 114632335684081872}
   instrumentPlayerTwo: {fileID: 114711822966926078}
-  playerOne: 00001000011000
-  playerTwo: 00011000001100
+  playerOne: 10111010101110100111100
+  playerTwo: 11100111001110100011101
   noteSlotPrefab: {fileID: 1503505773458504, guid: 2a647f3c9fe13464c829a1f15c64ee8b,
     type: 2}
   circleEffectPrefab: {fileID: 1049031137530534, guid: 3963a636dc6c241c5947750d8860d058,
