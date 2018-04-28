@@ -12,9 +12,14 @@ public class NotePlayer : MonoBehaviour {
 	public int noteCount = 16;
 	public float graceZoneInNotes = 0.5f;
 	public NoteTemplate[] notes = new NoteTemplate[6];
+
+	public string playerOne;
+	public string playerTwo;
+
 	public GameObject noteSlotPrefab;
 	public GameObject circleEffectPrefab;
-	public GameObject slotMarker;
+	public GameObject slotMarkerOne;
+	public GameObject slotMarkerTwo;
 
 	/*
 		Runtime
@@ -26,7 +31,8 @@ public class NotePlayer : MonoBehaviour {
 	public int noteIndex;
 
 	public float timePerNote;
-	public List<Note> noteSlots;
+	public List<Note> slotsPlayerOne;
+	public List<Note> slotsPlayerTwo;
 
 	private AudioSource source;
 
@@ -46,15 +52,30 @@ public class NotePlayer : MonoBehaviour {
 
 		timePerNote = 60f / bpm;
 
-		noteSlots = new List<Note>();
+		SpawnNotes(ref slotsPlayerOne, playerOne, slotMarkerOne);
+		SpawnNotes(ref slotsPlayerTwo, playerTwo, slotMarkerTwo);
+	}
+
+	void SpawnNotes(ref List<Note> slots, string playerTrack, GameObject noteMarker) {
+		slots = new List<Note>();
 		for (int i = 0; i < noteCount; i++) {
 			Note n = new Note();
 
-			n.obj = GameObject.Instantiate(noteSlotPrefab);
-			PositionSlot(i, n.obj);
-			n.spriteRenderer = n.obj.GetComponent<SpriteRenderer>();
+			char active = '1';
+			if (i < playerTrack.Length) {
+				active = playerTrack[i];
+			}
 
-			noteSlots.Add(n);
+			n.enabled = active == '1';
+
+			if (n.enabled) {
+				n.obj = GameObject.Instantiate(noteSlotPrefab);
+				PositionSlot(i, n.obj, noteMarker);
+				n.spriteRenderer = n.obj.GetComponent<SpriteRenderer>();
+
+			}
+
+			slots.Add(n);
 		}
 	}
 
@@ -77,9 +98,7 @@ public class NotePlayer : MonoBehaviour {
 
 		gameObject.transform.rotation = Quaternion.AngleAxis(-currentAngle, Camera.main.transform.forward);
 
-		Note n = noteSlots[noteIndex];
-
-		CheckNoteInput(n);
+		CheckNoteInput();
 
 		if (Input.GetKeyDown(KeyCode.C)) {
 			SpawnCircle();
@@ -90,11 +109,21 @@ public class NotePlayer : MonoBehaviour {
 		if (lastPlayed == noteIndex) {
 			return;
 		}
-		Note n = noteSlots[noteIndex];
-		if (n.clip != null) {
-			source.PlayOneShot(n.clip);
-			SpawnCircle();
+
+		Note notePlayerOne = slotsPlayerOne[noteIndex];
+		Note notePlayerTwo = slotsPlayerTwo[noteIndex];
+
+		bool spawnEffect = false;
+		if (notePlayerOne.clip != null) {
+			source.PlayOneShot(notePlayerOne.clip);
+			spawnEffect = true;
 		}
+		if (notePlayerTwo.clip != null) {
+			source.PlayOneShot(notePlayerTwo.clip);
+			spawnEffect = true;
+		}
+		if (spawnEffect)
+			SpawnCircle();
 		lastPlayed = noteIndex;
 	}
 
@@ -121,18 +150,26 @@ public class NotePlayer : MonoBehaviour {
 		}
 	}
 
-	private void CheckNoteInput(Note n) {
+	private void CheckNoteInput() {
+		Note notePlayerOne = slotsPlayerOne[noteIndex];
+		Note notePlayerTwo = slotsPlayerTwo[noteIndex];
+
 		float graceTime = (1 - graceZoneInNotes) * timePerNote;
 		if (tick < graceTime) {
 			return;
 		}
-		KeyCode first = KeyCode.Alpha0;
 
 		for (int i = 0; i < notes.Length; i++) {
-			KeyCode kc = first + i;
-			if (Input.GetKeyDown(kc)) {
-				n.spriteRenderer.sprite = notes[i].sprite;
-				n.clip = notes[i].clip;
+			string codeOne = "p1_note" + i;
+			string codeTwo = "p2_note" + i;
+
+			if (notePlayerOne.enabled && Input.GetButtonDown(codeOne)) {
+				notePlayerOne.spriteRenderer.sprite = notes[i].sprite;
+				notePlayerOne.clip = notes[i].clip;
+			}
+			if (notePlayerTwo.enabled && Input.GetButtonDown(codeTwo)) {
+				notePlayerTwo.spriteRenderer.sprite = notes[i].sprite;
+				notePlayerTwo.clip = notes[i].clip;
 			}
 		}
 	}
@@ -145,11 +182,11 @@ public class NotePlayer : MonoBehaviour {
 		return angle + single;
 	}
 
-	void PositionSlot(int index, GameObject go) {
+	void PositionSlot(int index, GameObject go, GameObject noteMarker) {
 		float angle = NoteAngle(index);
 
 		go.transform.parent = transform;
-		go.transform.position = slotMarker.transform.position;
+		go.transform.position = noteMarker.transform.position;
 		go.transform.RotateAround(gameObject.transform.position, Camera.main.transform.forward, angle);
 	}
 }
@@ -165,4 +202,5 @@ public class Note {
 	public AudioClip clip;
 	public GameObject obj;
 	public SpriteRenderer spriteRenderer;
+	internal bool enabled;
 }
