@@ -1,0 +1,33 @@
+# Default Unity Folders
+Library/
+Temp/
+
+# Build Directories
+obj/
+Build/
+TestResults/
+coverage-html
+coverage.json
+coverage-hits.txt
+
+# No Standard Assets.
+Assets/Standard Assets/
+Assets/Standard Assets.meta
+
+# Ignore Plugins like Script Inspector
+Assets/Plugins/
+Assets/Plugins.meta
+
+# Ignore solution files
+Assembly*.csproj
+*.sln
+*.suo
+*.userprefs
+
+# GEdit Backup Files
+*.cs~
+
+# Autosave Files
+*.autosave.scml
+*.blend1*
+
