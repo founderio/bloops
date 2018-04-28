@@ -43,6 +43,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1668071600675608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4489251344357560}
+  - component: {fileID: 114711822966926078}
+  m_Layer: 0
+  m_Name: InstrumentGuitar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1935559308894244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4796174450768604}
+  - component: {fileID: 212060007240260902}
+  m_Layer: 0
+  m_Name: tracks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1986115960725368
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,11 +97,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602137262831284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4489251344357560}
   - {fileID: 4060711902523384}
   - {fileID: 4903598535278514}
+  - {fileID: 4796174450768604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,11 +114,37 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101256733612830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.53, z: 0}
+  m_LocalPosition: {x: 0, y: 3.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4039547266244254}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4489251344357560
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668071600675608}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2808477, y: 1.612779, z: 0.13654286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4039547266244254}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4796174450768604
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935559308894244}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4039547266244254}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4903598535278514
 Transform:
@@ -93,11 +153,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986115960725368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.99, z: 0}
+  m_LocalPosition: {x: 0, y: 2.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4039547266244254}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &82331236552205732
 AudioSource:
@@ -192,20 +252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 240
   noteCount: 16
+  playableNoteCount: 6
+  key: 9
   graceZoneInNotes: 0.5
-  notes:
-  - clip: {fileID: 8300000, guid: 8710de1d43bdf42c4976835bac1e7379, type: 3}
-    sprite: {fileID: 21300000, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - clip: {fileID: 8300000, guid: 9cb68ff94a47a43a3bedc57084690188, type: 3}
-    sprite: {fileID: 21300004, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - clip: {fileID: 8300000, guid: edd474ab928c24d2d8905ea42dd324ab, type: 3}
-    sprite: {fileID: 21300006, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - clip: {fileID: 8300000, guid: 7807a79c6681e4478b1da115f19fe949, type: 3}
-    sprite: {fileID: 21300008, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - clip: {fileID: 8300000, guid: 582caf9be38df413a9f49f5cd2b08642, type: 3}
-    sprite: {fileID: 21300010, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
-  - clip: {fileID: 8300000, guid: bb1b4c97f258a490d9616b9c9521d275, type: 3}
-    sprite: {fileID: 21300012, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  instrumentPlayerOne: {fileID: 114711822966926078}
+  instrumentPlayerTwo: {fileID: 114711822966926078}
   playerOne: 00001
   playerTwo: 01010
   noteSlotPrefab: {fileID: 1503505773458504, guid: 2a647f3c9fe13464c829a1f15c64ee8b,
@@ -214,6 +265,8 @@ MonoBehaviour:
     type: 2}
   slotMarkerOne: {fileID: 1101256733612830}
   slotMarkerTwo: {fileID: 1986115960725368}
+  notesPlayerOne: []
+  notesPlayerTwo: []
   effectsContaner: {fileID: 0}
   tick: 0
   lastPlayed: 0
@@ -221,3 +274,92 @@ MonoBehaviour:
   timePerNote: 0
   slotsPlayerOne: []
   slotsPlayerTwo: []
+--- !u!114 &114711822966926078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668071600675608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6fe942af15e4c6096da67d2ae54b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allNotes:
+  - {fileID: 8300000, guid: 8710de1d43bdf42c4976835bac1e7379, type: 3}
+  - {fileID: 8300000, guid: b27370e474ad04f75a5b00984d009174, type: 3}
+  - {fileID: 8300000, guid: 9cb68ff94a47a43a3bedc57084690188, type: 3}
+  - {fileID: 8300000, guid: 33c6e3a85a19a450196dad84a5fd79d6, type: 3}
+  - {fileID: 8300000, guid: edd474ab928c24d2d8905ea42dd324ab, type: 3}
+  - {fileID: 8300000, guid: 7807a79c6681e4478b1da115f19fe949, type: 3}
+  - {fileID: 8300000, guid: be3cc02d5c9e0407098ccc0e2a654d58, type: 3}
+  - {fileID: 8300000, guid: 582caf9be38df413a9f49f5cd2b08642, type: 3}
+  - {fileID: 8300000, guid: 7d918502c62244760aface1ab6e5b10c, type: 3}
+  - {fileID: 8300000, guid: e0712b8f7233f4ef29e4d4ee95d0a5df, type: 3}
+  - {fileID: 8300000, guid: 307456c22a11c4e1db6a6acd66156bfd, type: 3}
+  - {fileID: 8300000, guid: bb1b4c97f258a490d9616b9c9521d275, type: 3}
+  - {fileID: 8300000, guid: 2f3e0dd172ac44ab48f1b0b90c3d7f5c, type: 3}
+  - {fileID: 8300000, guid: a8955d4306ea44a9a8f34063d01a947c, type: 3}
+  - {fileID: 8300000, guid: bcc9ff47e2bc348849a3692a629641d1, type: 3}
+  - {fileID: 8300000, guid: 5012613f3722c43739c4abd25f0ed5e8, type: 3}
+  - {fileID: 8300000, guid: 8a71d13241dc347e8a7c1c4eabbf4f1e, type: 3}
+  - {fileID: 8300000, guid: b70dcd949dd7b4f0bb153a7e896f5da3, type: 3}
+  - {fileID: 8300000, guid: f4764fa7c072e43c5a4db2c9e7942a73, type: 3}
+  - {fileID: 8300000, guid: acfa1eae70fff4df4bcb88ce57036362, type: 3}
+  - {fileID: 8300000, guid: 3f54f0898a484444aab2ae759a0bf443, type: 3}
+  - {fileID: 8300000, guid: a881771a5ee194425985445f5b717abc, type: 3}
+  - {fileID: 8300000, guid: 0dd637277f18c4d37a7c9921948bc597, type: 3}
+  - {fileID: 8300000, guid: 42c072a6e5e4549b9b5ea90ecc673f92, type: 3}
+  - {fileID: 8300000, guid: df0e9a357a2fd4302b4bd22176d37f79, type: 3}
+  steps: 0300000002000000020000000300000002000000
+  sprites:
+  - {fileID: 21300000, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300004, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300006, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300008, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300010, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+  - {fileID: 21300012, guid: e85afc6a847b84bf99f04c7b19e0603a, type: 3}
+--- !u!212 &212060007240260902
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935559308894244}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 336c53c756bcf43f784f0ab712b86482, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 20.49, y: 20.49}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

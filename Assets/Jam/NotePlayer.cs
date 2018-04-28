@@ -10,8 +10,12 @@ public class NotePlayer : MonoBehaviour {
 	 */
 	public float bpm = 100;
 	public int noteCount = 16;
+	public int playableNoteCount = 6;
+	public int key = 9;
 	public float graceZoneInNotes = 0.5f;
-	public NoteTemplate[] notes = new NoteTemplate[6];
+	public float delayInSeconds = 1.5f;
+	public NoteGenerator instrumentPlayerOne;
+	public NoteGenerator instrumentPlayerTwo;
 
 	public string playerOne;
 	public string playerTwo;
@@ -24,6 +28,8 @@ public class NotePlayer : MonoBehaviour {
 	/*
 		Runtime
 	 */
+	public NoteTemplate[] notesPlayerOne;
+	public NoteTemplate[] notesPlayerTwo;
 	public GameObject effectsContaner;
 	public float tick;
 
@@ -42,6 +48,8 @@ public class NotePlayer : MonoBehaviour {
 	/// any of the Update methods is called the first time.
 	/// </summary>
 	void Start() {
+		notesPlayerOne = instrumentPlayerOne.GetNotes(key, playableNoteCount);
+		notesPlayerTwo = instrumentPlayerTwo.GetNotes(key, playableNoteCount);
 
 		if (effectsContaner == null) {
 			effectsContaner = new GameObject("Effects Container");
@@ -83,6 +91,13 @@ public class NotePlayer : MonoBehaviour {
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
 	void Update() {
+		// Delay until start
+		if(delayInSeconds >= 0) {
+			delayInSeconds -= Time.deltaTime;
+			return;
+		}
+
+		// Move notes
 		tick += Time.deltaTime;
 		if (tick >= timePerNote) {
 			tick -= timePerNote;
@@ -159,17 +174,21 @@ public class NotePlayer : MonoBehaviour {
 			return;
 		}
 
-		for (int i = 0; i < notes.Length; i++) {
+		for (int i = 0; i < playableNoteCount; i++) {
 			string codeOne = "p1_note" + i;
 			string codeTwo = "p2_note" + i;
 
 			if (notePlayerOne.enabled && Input.GetButtonDown(codeOne)) {
-				notePlayerOne.spriteRenderer.sprite = notes[i].sprite;
-				notePlayerOne.clip = notes[i].clip;
+				notePlayerOne.spriteRenderer.sprite = notesPlayerOne[i].sprite;
+				notePlayerOne.clip = notesPlayerOne[i].clip;
+
+				Debug.Log(codeOne);
 			}
 			if (notePlayerTwo.enabled && Input.GetButtonDown(codeTwo)) {
-				notePlayerTwo.spriteRenderer.sprite = notes[i].sprite;
-				notePlayerTwo.clip = notes[i].clip;
+				notePlayerTwo.spriteRenderer.sprite = notesPlayerTwo[i].sprite;
+				notePlayerTwo.clip = notesPlayerTwo[i].clip;
+
+				Debug.Log(codeTwo);
 			}
 		}
 	}
